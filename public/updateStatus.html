@@ -1,0 +1,29 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="style.css">
+            <style>
+                table,th,td {
+                    border: 1px solid white;
+                }
+            </style>
+        </head>
+
+        <h1><span>Update Task Status</span></h1>
+        <h1>
+            <a class="link" href="/">Home</a>
+            <a class="link" href="newTask">Add New Task</a>
+            <a class="link" href="listTasks">List Tasks</a>
+            <a class="link" href="deleteTask">Delete Tasks</a><br><br>
+        
+            <form action="/updateStatus" method = "POST">
+                <span>Task ID</span><input type="text" name="_id"> <br>            
+                <span>Task Status</span>
+                    <select name="taskStatus" id="">
+                        <option value="inProgress">In Progress</option>
+                        <option value="complete">Complete</option>
+                    </select>
+                    <br>
+                <input type = "submit" value="Submit" />
+            </form>
+        </h1>
+</html>

@@ -38,27 +38,62 @@ app.get('/', function (req, res) {
     res.sendFile(path2public + '/index.html');
 })
 
+//Insert new task page
 app.get('/newTask', function (req, res) {
     res.render(path2public + 'newTask.html');
 })
 
+//Post request for new task page
 app.post('/newTask', function (req, res) {
+    let date = new Date(req.body.taskDue);
     
-    let task = {
-        taskName: req.body.taskName,
-        taskDue: req.body.taskDue,
-        taskDesc: req.body.taskDesc
-    }
-    db.push(task);
-
-    res.render(path2public + 'listTasks.html', {db: db});
+    let newTask = {taskName: req.body.taskName, assignTo: req.body.assignTo, dueDate: date, taskStatus: req.body.taskStatus, taskDesc: req.body.taskDesc};
+    col.insertOne(newTask);
+    res.redirect('listTasks');
 })
 
+//Get all tasks page
 app.get('/listTasks', function (req, res) {
-    //res.sendfile(__dirname + '/listTasks.html');  
-    res.render(path2public + 'listTasks.html', {db: db});
+    col.find({}).toArray(function(err, data){
+        res.render(path2public + 'listTasks.html', {db: data});
+    });
 })
 
+//Delete Task
+app.get('/deleteTask', function(req, res){
+    res.sendFile(path2public + 'deleteTask.html');
+});
+
+app.post('/deleteTask', function(req, res){
+    //ID is an object, hence must change to object - cannot use string directly
+    let query = { _id: new mongodb.ObjectID(req.body._id)};
+    
+    col.deleteOne(query, function(err, obj){
+        console.log('Error...' + err); 
+    });
+    res.redirect('listTasks');
+});
+
+//Delete Completed Tasks
+app.get('/deleteCompleted', function(req, res){
+    let query = {taskStatus: 'complete'};
+    col.deleteMany(query);
+    res.redirect('listTasks');
+});
+
+//Update Task Status
+app.get('/updateStatus', function(req, res){
+    res.sendFile(path2public + 'updateStatus.html');
+});
+
+app.post('/updateStatus', function(req, res){
+    let query = { _id: new mongodb.ObjectID(req.body._id)};    
+    let status = { taskStatus: req.body.taskStatus};
+    col.updateOne(query, {$set: status}, {upsert: true}, function(err, result){
+        console.log('Error...' + err);
+    });
+    res.redirect('listTasks');
+});
 
 app.listen(8080, () => {
     console.log('server started...');

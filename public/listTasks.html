@@ -10,25 +10,40 @@
     </head>
 
     <body>
+        <h1><span>List All Task</span></h1>
         <h1>
             <a class="link" href="/">Home</a>
             <a class="link" href="newTask">Add New Task</a>
+            <a class="link" href="deleteTask">Delete Task</a>
+            <a class="link" href="updateStatus">Update Task Status</a>
         </h1>
 
         <h3>The available tasks are:
             <table>
                 <tr>
+                    <td>Task ID</td>
                     <td>Name</td>
+                    <td>Assign To</td>
                     <td>Due Date</td>
+                    <td>Task Status</td>
                     <td>Description</td>
                 </tr>
                 <% for (var i = 0; i < db.length; i++) { %>
                     <tr>
                         <td>
+                            <%= db[i]._id %>
+                        </td>
+                        <td>
                             <%= db[i].taskName %>
                         </td>
                         <td>
-                            <%= db[i].taskDue %>
+                            <%= db[i].assignTo %>
+                        </td>
+                        <td>
+                            <%= db[i].dueDate %>
+                        </td>
+                        <td>
+                            <%= db[i].taskStatus %>
                         </td>
                         <td>
                             <%= db[i].taskDesc %>
