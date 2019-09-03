@@ -1,0 +1,42 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            table,th,td {
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>
+            <a class="link" href="/">Home</a>
+            <a class="link" href="newTask">Add New Task</a>
+        </h1>
+
+        <h3>The available tasks are:
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Due Date</td>
+                    <td>Description</td>
+                </tr>
+                <% for (var i = 0; i < db.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= db[i].taskName %>
+                        </td>
+                        <td>
+                            <%= db[i].taskDue %>
+                        </td>
+                        <td>
+                            <%= db[i].taskDesc %>
+                        </td>
+                    </tr>
+                    <% }%>
+            </table>
+        </h3>
+    </body>
+
+</html>

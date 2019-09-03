@@ -1,0 +1,30 @@
+/* Make background indigo */
+body {
+    background-color: indigo;
+}
+
+/* Adjusting image size using ID */
+#image {
+    width: 700px;
+    height: 250px;
+}
+
+/* Make everything in span white */
+span {
+    color: white;
+}
+
+/* Make heading 3 wheat colour */
+h3 {
+    color: wheat;
+}
+
+/* Make table font wheat colour */
+table {
+    color: wheat;
+}
+
+/* Make hyperlink white */
+.link {
+    color: turquoise;
+}
