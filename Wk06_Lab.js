@@ -74,11 +74,16 @@ app.post('/deleteTask', function(req, res){
     res.redirect('listTasks');
 });
 
-//Delete Completed Tasks
+//Delete all completed tasks
 app.get('/deleteCompleted', function(req, res){
+    res.sendFile(path2public + 'deleteCompleted.html');
+});
+
+//Post request for Delete all completed
+app.post('/deleteCompleted', function(req, res){
     let query = {taskStatus: 'complete'};
     col.deleteMany(query);
-    res.redirect('listTasks');
+    res.redirect('listTasks')
 });
 
 //Update Task Status
@@ -97,4 +102,4 @@ app.post('/updateStatus', function(req, res){
 
 app.listen(8080, () => {
     console.log('server started...');
-})
+});
