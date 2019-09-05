@@ -100,6 +100,24 @@ app.post('/updateStatus', function(req, res){
     res.redirect('listTasks');
 });
 
+/**
+ * Additional Task - add new page that a form with two input fields
+ *  - deletDate
+ *  - submit button
+ * Server will delete all tasks older than deletedate
+ *  */
+app.get('/deleteDate', function(req, res){
+    res.sendFile(path2public + 'deleteDate.html');
+});
+
+app.post('/deleteDate', function(req, res){
+    let deleteDate = new Date (req.body.deleteDate);
+    let query = {dueDate: {$gt: deleteDate}};
+    
+    col.deleteMany(query);
+    res.redirect('listTasks');
+});
+
 app.listen(8080, () => {
     console.log('server started...');
 });

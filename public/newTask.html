@@ -12,11 +12,12 @@
     <a class="link" href="deleteTask">Delete Task</a>
     <a class="link" href="updateStatus">Update Task Status</a>
     <a class="link" href="deleteCompleted">Delete All Completed</a>
+    <a class="link" href="deleteDate">Delete Date</a>
     
     <form method="POST" action="/newTask" class="">
         <span>Task Name</span> <input type="text" name="taskName" /><br>
         <span>Assign To</span> <input type="text" name="assignTo" /><br>
-        <span>Task Due</span> <input type="text" name="taskDue" /> <br>
+        <span>Task Due</span> <input type="date" name="taskDue" /> <br>
         <span>Task Status</span>
             <select name="taskStatus" id="">
                 <option value="inProgress">In Progress</option>
